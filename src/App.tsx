@@ -1,9 +1,10 @@
-import './App.css';
+import Todo from "./components/Todo";
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <h1>Hello TS</h1>
+      <Todo items={['TS Course', 'JS Course']} />
     </div>
   );
 }
