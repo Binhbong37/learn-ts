@@ -1,8 +1,10 @@
-import React, { useRef } from 'react'
+import React, { useRef, useContext } from 'react'
+import { TodosContext } from '../store/todos-context'
 import classes from './NewTodo.module.css'
 
 
-const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
+const NewTodo: React.FC = () => {
+    const todoCtx = useContext(TodosContext)
     // TS luôn ép kiểu dữ liệu, nên khi dùng với
     // các hook thì cần lưu ý <>
     const todoTextInput = useRef<HTMLInputElement>(null)
@@ -19,7 +21,7 @@ const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
             return;
         }
         // pass data to App
-        props.onAddTodo(enteredText)
+        todoCtx.addTodo(enteredText)
 
         // todoTextInput.current!.value = ''
     }
