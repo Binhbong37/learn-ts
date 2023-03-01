@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 
-const NewTodo = () => {
+const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
     // TS luôn ép kiểu dữ liệu, nên khi dùng với
     // các hook thì cần lưu ý <>
     const todoTextInput = useRef<HTMLInputElement>(null)
@@ -11,6 +11,15 @@ const NewTodo = () => {
         // nó sẽ tự động thêm dấu ? nếu chắc chắn 100%
         // thì thay bằng !
         const enteredText = todoTextInput.current!.value;
+
+        if (enteredText.trim().length === 0) {
+            // throw Err
+            return;
+        }
+        // pass data to App
+        props.onAddTodo(enteredText)
+
+        // todoTextInput.current!.value = ''
     }
     return (
         <form onSubmit={submitHandler}>
